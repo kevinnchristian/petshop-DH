@@ -83,24 +83,29 @@ const vizualizarPets = () => {
 }
 
 
-// arrow function com a função de vacinar o pet se necessário e exibir mensagem se ele ja é, ou acabou de ser vacinado.  
-function darVacina(pet) {
+// função de vacinar o pet se necessário e exibir mensagem se ele ja é, ou acabou de ser vacinado.  
+function darVacina() {
   console.log(" ");
   console.log("-----------------------------------------");
   console.log("@@@@@@@@@@@-Serviço de Vacina-@@@@@@@@@@@");
   console.log("-----------------------------------------");
-  if (pet.vacinado) {
-    console.log("O pet não precisa ser vacinado!");
-  } else {
-    pet.vacinado = true;
-    console.log("O pet vacinado com sucesso!");
+  for (let i = 0; i < listaPets.length; i++) {
+    if (!listaPets[i].vacinado) {
+      console.log("Vacinando o pet.....");
+      listaPets[i].vacinado = true;
+      console.log(`O pet ${listaPets[i].nome} vacinado com sucesso!`);
+    } else {
+      console.log(`O pet ${listaPets[i].nome} está com a vacina em dia!`);
+    }
+    console.log("-----------------------------------------");
   }
-  console.log("-----------------------------------------");
+
 }
+
 
 const quantidadeServicos = () => {
   let qtdTotal = 0;
-  for(let i = 0; i < listaPets.length; i++) {
+  for (let i = 0; i < listaPets.length; i++) {
     qtdTotal += listaPets[i].servicos.length;
   }
   console.log(" ");
@@ -120,10 +125,7 @@ darEntradaPets(lerPets(json));
 vizualizarPets(listaPets);
 
 // 4° Execução - Serviço de Vacinação:
-darVacina(listaPets);
+darVacina();
 
 // 5° Execução - Informa o total de serviços prestados:
 quantidadeServicos();
-
-
-
